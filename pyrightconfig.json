@@ -1,0 +1,12 @@
+{
+    "exclude": [
+        "**/.history",
+        "**/.git",
+        "**/node_modules",
+        "**/__pycache__",
+        "**/logs"
+    ],
+    "reportAny": false,
+    "reportExplicitAny": false,
+    "reportUnknownMemberType": false
+}
