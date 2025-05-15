@@ -4,6 +4,7 @@ version = "0.1.0"
 description = "A template for a FastAPI project"
 readme = "README.md"
 requires-python = ">=3.12,<3.13"
+license = { file = "LICENSE" }
 dependencies = [
   "bcrypt==4.0.1",
   "fastapi[standard]>=0.115.12",
@@ -15,10 +16,15 @@ dependencies = [
   "pydantic-settings[toml]>=2.9.1",
   "pyjwt>=2.10.1",
   "sqlmodel>=0.0.24",
+  "typer>=0.15.4",
 ]
 
 [dependency-groups]
-dev = ["pre-commit>=4.2.0", "ruff>=0.11.9"]
+dev = ["git-cliff>=2.8.0", "gitpython>=3.1.44", "packaging>=25.0", "pre-commit>=4.2.0", "ruff>=0.11.9"]
+
+[project.scripts]
+# Release tool: Update version number, generate changelog, and create git tag.
+release = "scripts.release:app"
 
 [build-system]
 requires = ["hatchling"]

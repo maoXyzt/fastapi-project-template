@@ -30,3 +30,13 @@ uv run fastapi dev main.py
 ```bash
 uv run fastapi run main.py
 ```
+
+## 2 - Release
+
+Release tool: Update version number, generate changelog, and create git tag.
+
+See `scripts/release.py` for more details.
+
+```bash
+uv run release patch|minor|major [--dry-run] [--push]
+```
