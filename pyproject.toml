@@ -20,7 +20,17 @@ dependencies = [
 ]
 
 [dependency-groups]
-dev = ["git-cliff>=2.8.0", "gitpython>=3.1.44", "packaging>=25.0", "pre-commit>=4.2.0", "ruff>=0.11.9"]
+dev = [
+  "git-cliff>=2.8.0",
+  "gitpython>=3.1.44",
+  "packaging>=25.0",
+  "pre-commit>=4.2.0",
+  "ruff>=0.11.9",
+]
+
+[project.urls]
+Homepage = "https://github.com/maoXyzt/fastapi-project-template"
+Issues = "https://github.com/maoXyzt/fastapi-project-template/issues"
 
 [project.scripts]
 # Release tool: Update version number, generate changelog, and create git tag.
