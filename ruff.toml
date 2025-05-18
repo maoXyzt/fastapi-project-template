@@ -1,5 +1,5 @@
 line-length = 88
-# Assume the minimum version is Python 3.10
+# Assume the minimum python version
 target-version = 'py312'
 fix = true
 exclude = ["*.pyi", "*/site-packages"]
