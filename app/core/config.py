@@ -7,6 +7,7 @@ from pydantic import (
     EmailStr,
     Field,
     PostgresDsn,
+    SecretStr,
     computed_field,
     model_validator,
 )
