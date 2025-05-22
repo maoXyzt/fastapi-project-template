@@ -7,6 +7,7 @@ from pydantic import (
     EmailStr,
     Field,
     PostgresDsn,
+    SecretStr,
     computed_field,
     model_validator,
 )
@@ -50,10 +51,10 @@ class Settings(BaseSettings):
             self.FRONTEND_HOST
         ]
 
-    POSTGRES_SERVER: str = "localhost"
+    POSTGRES_HOST: str = "localhost"
     POSTGRES_PORT: int = 5432
     POSTGRES_USER: str = "postgres"
-    POSTGRES_PASSWORD: str = "changethis"
+    POSTGRES_PASSWORD: SecretStr = SecretStr("changethis")
     POSTGRES_DB: str = "postgres"
 
     @computed_field  # type: ignore[prop-decorator]
@@ -64,8 +65,8 @@ class Settings(BaseSettings):
                 MultiHostUrl.build(
                     scheme="postgresql+psycopg",
                     username=self.POSTGRES_USER,
-                    password=self.POSTGRES_PASSWORD,
-                    host=self.POSTGRES_SERVER,
+                    password=self.POSTGRES_PASSWORD.get_secret_value(),
+                    host=self.POSTGRES_HOST,
                     port=self.POSTGRES_PORT,
                     path=self.POSTGRES_DB,
                 )
