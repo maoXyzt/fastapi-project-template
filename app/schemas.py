@@ -50,12 +50,12 @@ class PaginationMixin:
     page: PositiveInt = 1
     page_size: PositiveInt = 20
 
-    def get_offset(self) -> NonNegativeInt:
-        """Get the offset based on the page and page_size.
+    @computed_field
+    @property
+    def offset(self) -> NonNegativeInt:
+        """The offset based on the page and page_size.
 
-        Returns
-        -------
-        NonNegativeInt
-            The offset value.
+        Returns:
+            NonNegativeInt: The offset value.
         """
         return (self.page - 1) * self.page_size
