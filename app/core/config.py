@@ -76,7 +76,11 @@ class Settings(BaseSettings):
     FIRST_SUPERUSER: EmailStr = Field(default="admin@example.com")
     FIRST_SUPERUSER_PASSWORD: str = Field(default="changethis")
 
-    def _check_default_secret(self, var_name: str, value: str | None) -> None:
+    def _check_default_secret(
+        self, var_name: str, value: str | SecretStr | None
+    ) -> None:
+        if isinstance(value, SecretStr):
+            value = value.get_secret_value()
         if value == "changethis":
             message = f'The value of {var_name} is "changethis", for security, please change it, at least for deployments.'  # noqa: E501
             if self.ENVIRONMENT == "local":
