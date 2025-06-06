@@ -28,6 +28,7 @@ class Settings(BaseSettings):
     model_config: "SettingsConfigDict" = SettingsConfigDict(  # pyright: ignore[reportIncompatibleVariableOverride]
         env_file=".env",
         env_ignore_empty=True,
+        env_nested_delimiter="__",
         extra="ignore",
     )
 
