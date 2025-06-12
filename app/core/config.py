@@ -1,5 +1,6 @@
 import secrets
 import warnings
+from pathlib import Path
 from typing import Annotated, Any, Literal, Self
 
 from pydantic import (
@@ -14,6 +15,8 @@ from pydantic import (
 from pydantic.functional_validators import BeforeValidator
 from pydantic_core import MultiHostUrl
 from pydantic_settings import BaseSettings, SettingsConfigDict
+
+PROJ_DIR = Path(__file__).absolute().parents[2]
 
 
 def parse_cors(v: Any) -> list[str] | str:
@@ -40,6 +43,8 @@ class Settings(BaseSettings):
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24 * 8
     FRONTEND_HOST: str = "http://localhost:5173"
     ENVIRONMENT: Literal["local", "staging", "production"] = "local"
+
+    DEFAULT_ASSETS_FOLDER: Path = PROJ_DIR / "assets"
 
     BACKEND_CORS_ORIGINS: Annotated[list[AnyUrl] | str, BeforeValidator(parse_cors)] = (
         Field(default_factory=list)
